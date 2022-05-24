@@ -94,6 +94,9 @@ console.log(typeof price, price);
         message: {err: `Error occurred in cartController.clearCart ${err.error}`}
       });
     };
+  }
+
+  cartController.checkOut = async (req,res,next) => {
     
   }
   
