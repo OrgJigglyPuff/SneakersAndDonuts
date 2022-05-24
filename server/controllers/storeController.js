@@ -13,7 +13,7 @@ storeController.getProducts = async (req, res, next) => {
     try{
 
         const {rows} = await Store.query(donutQuery)
-        console.log(rows)        
+        //console.log(rows)        
         const response = await Store.query(sneakersQuery)
         res.locals.products = [rows,response.rows]
         return next()
