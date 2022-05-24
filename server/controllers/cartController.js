@@ -15,8 +15,8 @@ cartController.getItems = async (req, res, next) => {
   catch(err){
     console.log(err)
     return next({
-      log: `cartController.addProduct: ERROR: ${err}`,
-      message: {err: `Error occurred in cartController.getProduct ${err.error}`}
+      log: `cartController.getItems: ERROR: ${err}`,
+      message: {err: `Error occurred in cartController.getItems ${err.error}`}
     });
   };
 };
@@ -81,5 +81,9 @@ cartController.addProduct = async (req, res, next) => {
      };
   }
   
+  cartController.clearCart = async (req,res,next) => {
+    console.log('entered addProduct middleware')
+    res.locals.shoppingCartItems = await ShoppingCarts.findOneAndUpdate({_id,_id}, {total_price: 0.00, total_quantity: 0}, {new:true})
+  }
   
   module.exports = cartController;
