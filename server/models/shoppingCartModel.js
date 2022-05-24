@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config()
 const myURI = process.env.MONGODB_URI
-
+// 'mongodb+srv://codesmith:<password>@cluster0.onyhb.mongodb.net/?retryWrites=true&w=majority'
 
 // @cluster0.onyhb.mongodb.net
 mongoose.connect(myURI, {

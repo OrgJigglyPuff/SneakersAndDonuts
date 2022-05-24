@@ -10,7 +10,7 @@ const PORT = 3000;
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 app.get('/',(req,res)=>{ return res.status(200).sendFile(path.resolve(__dirname,'../src/index.html'))})
-app.use('/signup',authRoute)
+app.use('/auth',authRoute)
 
 
 

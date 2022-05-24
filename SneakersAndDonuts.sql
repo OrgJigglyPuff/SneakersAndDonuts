@@ -39,7 +39,7 @@ CREATE TABLE public.sneakers(
   "brand" varchar NOT NULL,
   "type" varchar NOT NULL,
   "gender" varchar,
-  "price" float NOT NULL,
+  "price" money NOT NULL,
   "image_link" varchar,
   "description" varchar
 ) WITH (
@@ -49,7 +49,7 @@ CREATE TABLE public.sneakers(
 CREATE TABLE public.orders(
   "order_id" serial NOT NULL,
   "user_id" bigint NOT NULL,
-  "total_cost" float NOT NULL,
+  "total_cost" money NOT NULL,
   "total_quantity" bigint NOT NULL,
   "number_of_items" bigint,
   "date" date,
