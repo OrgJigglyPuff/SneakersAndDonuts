@@ -16,11 +16,13 @@ module.exports = {
       publicPath: 'build',
       directory: path.resolve(__dirname, 'build')
     },
-     proxy: {
-       '/': 'http://localhost:3000',
-     },
-
-    port: 8080
+     proxy: [{
+      context: ['/','/auth', '/store'],
+      target: 'http://localhost:3000'
+      }]
+     ,
+    port: 8080,
+    historyApiFallback: true,
     },
 
   module: {

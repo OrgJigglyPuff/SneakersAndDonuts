@@ -10,7 +10,8 @@ signUpController.createUser = async (req, res, next) => {
     
   
     try {
-// create new user
+
+      // create new user
       const insertQuery  = `
       INSERT INTO users (username, email, password)
       VALUES ($1, $2, $3) RETURNING _id, username;
@@ -47,12 +48,27 @@ signUpController.createUser = async (req, res, next) => {
     try {
       // verify
       const verifyQuery  = `
-      SELECT username, password FROM users WHERE users.username = ${username};
+      SELECT username, password FROM users WHERE username = '${username}';
       `;
       
       const response = await User.query(verifyQuery);
       console.log(response)
-      console.log('Signed in!')
+      // If username doesn't exist
+      const user = response.rows;
+      if(user.length === 0) {
+        res.status(400).json({
+          error: "User is not registered. Sign up first",
+        })
+      } else {
+        // Check if password is correct
+        if(password === response.rows[0].password) {
+          console.log('Signed in!')
+        } else {
+          res.status(400).json({
+            error: "Wrong password",
+          })
+        }
+      }
       return next();
     }
     catch(err) {
