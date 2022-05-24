@@ -22,14 +22,14 @@ cartController.getItems = async (req, res, next) => {
 };
 cartController.addProduct = async (req, res, next) => {
     console.log('entered addProduct middleware')
-   let {_id, item, price } = req.body
-
+   let {_id, type, price } = req.body
+console.log(typeof price, price);
    if(typeof price === 'string'){
     price = Number(price.slice(1))
    }
    
     try{
-    res.locals.shoppingCartItems=  await ShoppingCarts.findOneAndUpdate({_id,_id}, {$push: {"items": item}, $inc: {total_price: price, total_quantity: 1}}, {new:true})
+    res.locals.shoppingCartItems=  await ShoppingCarts.findOneAndUpdate({_id,_id}, {$push: {"items": type}, $inc: {total_price: price, total_quantity: 1}}, {new:true})
     console.log(res.locals.shoppingCartItems)
     return next()
         
@@ -45,18 +45,18 @@ cartController.addProduct = async (req, res, next) => {
 
   cartController.deleteProduct = async (req,res,next) => {
     console.log('entered addProduct middleware')
-    let {_id, item, price } = req.body
+    let {_id, type, price } = req.body
  
     if(typeof price === 'string'){
-     price = Number(price.slice(1)*-1)
+     price = Number(price.slice(1))
     }
-    
+    price = price * -1
      try{
        await ShoppingCarts.updateOne( {_id,_id},[ 
         { $set: { 
              items: {
                  $let: {
-                     vars: { ix: { $indexOfArray: [ '$items', item ] } },
+                     vars: { ix: { $indexOfArray: [ '$items', type ] } },
                      in: { $concatArrays: [
                                { $slice: [ '$items', 0, "$$ix"] },
                                [ ],
@@ -83,7 +83,18 @@ cartController.addProduct = async (req, res, next) => {
   
   cartController.clearCart = async (req,res,next) => {
     console.log('entered addProduct middleware')
-    res.locals.shoppingCartItems = await ShoppingCarts.findOneAndUpdate({_id,_id}, {total_price: 0.00, total_quantity: 0}, {new:true})
+    const {_id} = req.body
+    try{
+      res.locals.shoppingCartItems = await ShoppingCarts.findOneAndUpdate({_id,_id}, {items: [], total_price: 0.00, total_quantity: 0}, {new:true})
+      return next();
+    } catch(err){
+      console.log(err)
+      return next({
+        log: `cartController.clearCart: ERROR: ${err}`,
+        message: {err: `Error occurred in cartController.clearCart ${err.error}`}
+      });
+    };
+    
   }
   
   module.exports = cartController;
