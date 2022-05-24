@@ -3,25 +3,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: ['@babel/polyfill', path.join(__dirname, 'src/index.js')],
+  entry: ['@babel/polyfill', path.join(__dirname, '/src/index.js')],
   output: {
-    path: path.join(__dirname, '/build'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'main.js',
+    publicPath: '/'
   },
   plugins: [new HtmlWebpackPlugin({template: './src/index.html'})],
 
   devServer: {
-    // need public path : build, directory (current path + build) - specifies where in memory the dev server is running
-    static :{
-      publicPath: 'build',
-      directory: path.resolve(__dirname, 'build')
-    },
-     proxy: {
-       '/': 'http://localhost:3000',
-     },
-
-    port: 8080
-    },
+   
+    historyApiFallback: true
+  },
 
   module: {
     rules: [

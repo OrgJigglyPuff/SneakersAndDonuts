@@ -2,18 +2,18 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-
-import { BrowserRouter } from 'react-router-dom';
-//import { createStore } from 'redux';
 import App from './App.jsx';
+import { Route, Routes, HashRouter, } from 'react-router-dom';
+import SignInAndSignUpPage from './SignInAndSignUp';
+import Expenses from './routes/expenses.jsx';
 
-//const store = createStore('../reducers/index')
-
-render(
-<BrowserRouter>
-<h1>test 2</h1>
-  <App/>
-
-</BrowserRouter>,
-document.querySelector('#root')
+const rootElement = document.getElementById("root");
+render( 
+<HashRouter>
+      <Routes>
+        <Route  path='/' element={<SignInAndSignUpPage/>}/>
+        <Route path='expenses' element={<h1>test</h1>} />
+      </Routes> 
+</HashRouter>,
+rootElement
 );
