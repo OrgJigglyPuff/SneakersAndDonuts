@@ -10,11 +10,21 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [new HtmlWebpackPlugin({template: './src/index.html'})],
-
+  
   devServer: {
-   
-    historyApiFallback: true
-  },
+    // need public path : build, directory (current path + build) - specifies where in memory the dev server is running
+    static :{
+      publicPath: 'build',
+      directory: path.resolve(__dirname, 'build')
+    },
+     proxy: [{
+      context: ['/','/auth', '/store'],
+      target: 'http://localhost:3000'
+      }]
+     ,
+    port: 8080,
+    historyApiFallback: true,
+    },
 
   module: {
     rules: [
