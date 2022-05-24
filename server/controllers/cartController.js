@@ -1,5 +1,6 @@
 const Store = require('../models/storeModel.js')
-const ShoppingCarts = require('../models/shoppingCartModel.js')
+const ShoppingCarts = require('../models/shoppingCartModel.js');
+const { response } = require('../server.js');
 const cartController = {};
 
 
@@ -20,6 +21,7 @@ cartController.getItems = async (req, res, next) => {
     });
   };
 };
+
 cartController.addProduct = async (req, res, next) => {
     console.log('entered addProduct middleware')
    let {_id, type, price } = req.body
@@ -31,8 +33,7 @@ console.log(typeof price, price);
     try{
     res.locals.shoppingCartItems=  await ShoppingCarts.findOneAndUpdate({_id,_id}, {$push: {"items": type}, $inc: {total_price: price, total_quantity: 1}}, {new:true})
     console.log(res.locals.shoppingCartItems)
-    return next()
-        
+    return next()  
       }
     catch(err){
       console.log(err)
@@ -97,7 +98,23 @@ console.log(typeof price, price);
   }
 
   cartController.checkOut = async (req,res,next) => {
+    const {_id} = req.body
+    console.log('entered checkout middleware')
+    try{
+
+    response = await ShoppingCarts.findOne({ _id, _id})
+
+    console.log(response)
+    const { total_quantity, total_price } = response
     
+    return next();
+
+    } catch(err) {
+      return next({
+        log: `cartController.checkOut: ERROR: ${err}`,
+        message: {err: `Error occurred in cartController.checkOut ${err.error}`}
+      });
+    }
   }
   
   module.exports = cartController;
