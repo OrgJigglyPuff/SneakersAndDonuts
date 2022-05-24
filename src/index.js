@@ -2,9 +2,8 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-import App from './App.jsx';
 import { Route, Routes, HashRouter, } from 'react-router-dom';
-import SignInAndSignUpPage from './SignInAndSignUp';
+import SignInAndSignUpPage from './pages/SignInAndSignUp';
 import Expenses from './routes/expenses.jsx';
 
 const rootElement = document.getElementById("root");
