@@ -1,6 +1,20 @@
 #item{
-    border: 1px solid black;
+    border: 1px solid rgb(63, 6, 247);
+    height: 50vh;
 }
 h1{
     font-size: medium;
+}
+img{
+    width: 60%;
+    height: 60%
+    
+   
+}
+#priceAndBuy{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: space-around;
+/* background-color: blanchedalmond; */
 }

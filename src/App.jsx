@@ -10,6 +10,8 @@ import Expenses from './routes/expenses.jsx';
 function App() {
     
 const [user, updateUser] = useState('')
+const [cart, updateCart] = useState({total : 0, items: []})
+//to add to cart, send price, shopping cart id, and item
 console.log(user)
 
     return (
