@@ -78,7 +78,7 @@ signUpController.createUser = async (req, res, next) => {
     try {
       // -- Verify user
       const verifyQuery  = `
-      SELECT username, password FROM users WHERE username = '${username}';
+      SELECT username, password, cart_id FROM users WHERE username = '${username}';
       `;
       
       const response = await User.query(verifyQuery);
