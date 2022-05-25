@@ -7,17 +7,42 @@ signUpController.createUser = async (req, res, next) => {
     console.log('-----> entered createUser middleware')
     console.log('reqbody', req.body);
     const {username, email, password} = req.body;
-    
+    const params = [username, email, password];
   
     try {
-
-      // create new user
+      const emailQuery = `
+      SELECT email FROM users WHERE email = '${email}';
+      `;
+      const usernameQuery = `
+      SELECT username FROM users WHERE username = '${username}'
+      `;
+      
       const insertQuery  = `
       INSERT INTO users (username, email, password)
       VALUES ($1, $2, $3) RETURNING _id, username;
       `;
+      
+      // -- Check if email already exists
+      const data = await User.query(emailQuery);
+      // console.log(data);
+      const dataEmail = data.rows;
+      if (dataEmail.length !== 0) {
+        return res.status(400).json({
+          error: "Email already registered."
+        });
+      }
+
+      // -- Check if username already exists
+      const dataUser = await User.query(usernameQuery);
+      const dataUsername = dataUser.rows;
+      if(dataUsername.length !== 0) {
+        return res.status(400).json({
+          error: "Username already exist."
+        });
+      }
+
+      // -- Create new user
       // const safePassword = await bcrypt.hash(password, 10);
-      const params = [username, email, password];
       const response = await User.query(insertQuery, params);
       console.log(response)
       res.locals.user_id = response.rows[0]._id;
@@ -46,26 +71,26 @@ signUpController.createUser = async (req, res, next) => {
     const {username, password} = req.body;
 
     try {
-      // verify
+      // -- verify
       const verifyQuery  = `
       SELECT username, password FROM users WHERE username = '${username}';
       `;
       
       const response = await User.query(verifyQuery);
       console.log(response)
-      // If username doesn't exist
+      // -- If username doesn't exist
       const user = response.rows;
       if(user.length === 0) {
         res.status(400).json({
           error: "User is not registered. Sign up first",
         })
       } else {
-        // Check if password is correct
+        // -- Check if password is correct
         if(password === response.rows[0].password) {
           console.log('Signed in!')
         } else {
           res.status(400).json({
-            error: "Wrong password",
+            error: "Wrong username/password",
           })
         }
       }
@@ -74,8 +99,8 @@ signUpController.createUser = async (req, res, next) => {
     catch(err) {
       console.log(err)
       return next({
-        log: `signupController.createUser: ERROR: ${err}`,
-        message: {err: `Error occurred in signupController.createUser ${err.error}`}
+        log: `signupController.verifyUser: ERROR: ${err}`,
+        message: {err: `Error occurred in signupController.verifyUser ${err.error}`}
       });
     };       
   }
