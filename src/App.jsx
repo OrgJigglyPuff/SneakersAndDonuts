@@ -38,7 +38,7 @@ else {
           <Route path='store' element={<Store user = {user} id = {cartId}/>} />
           <Route path='cart' element={<Cart user = {user} id ={cartId}/>} />
           <Route path='cart/checkout' element={<Checkout id ={cartId}/>} />
-          <Route path='/cart/checkout/confirmation' element={<Confirmation />} />
+          <Route path='/cart/checkout/confirmation' element={<Confirmation id = {userId}/>} />
         </Routes>
         {footer}
         </HashRouter>

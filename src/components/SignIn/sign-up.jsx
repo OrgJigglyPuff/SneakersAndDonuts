@@ -25,7 +25,8 @@ let object;
         .catch(err => console.log(err))
             }
         }
-    if (user != '') {return (<Navigate to={"store"}/>) }
+    if (user != '') { console.log('userid:', userId + ' cartId: ', cartId);
+        return (<Navigate to={"store"}/>) }
 
     return (
     //  <div className = 'signUpDiv'>
