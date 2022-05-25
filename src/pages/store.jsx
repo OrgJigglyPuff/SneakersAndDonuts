@@ -27,9 +27,9 @@ useEffect(() => {
 
     if (display=== true) {console.log(outputArray) ;return (
         <div id = 'storediv'>
-        <div className="ItemContainer">
+        <main>
            {outputArray}
-        </div>
+        </main>
         </div>
     ) }
 }
