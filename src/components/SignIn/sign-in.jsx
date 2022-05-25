@@ -27,7 +27,7 @@ function SignIn({user, updateUser, cartId, updateCartId, userId, updateUserId}) 
         }))
             }
         }
-    if (user != '') {
+    if (user != '') {console.log('userid:', userId + ' cartId: ', cartId)
       return (<Navigate to={"store"}/>);
     }
 
