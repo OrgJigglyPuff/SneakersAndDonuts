@@ -30,6 +30,10 @@ storeController.getProducts = async (req, res, next) => {
     console.log('entered orderHistory middleware')
     const {user_id} = req.body
     console.log(user_id);
+    orderQuery = `SELECT * FROM orders WHERE user_id = ${user_id}`
+    const response = await Store.query(orderQuery)
+    res.locals.orders = response.rows
+    return next();
     // const response = 
   }
   
