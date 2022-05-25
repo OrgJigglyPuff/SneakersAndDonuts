@@ -18,7 +18,7 @@ useEffect(() => {
         // .then(res => console.log(array))
         .then( () => {
             array.forEach(el => {
-                console.log(el);
+                //console.log(el);
                 count++;
                 outputArray.push(<Donut type={el.type} price={el.price} image={el.image_link} description={el.description} id = {id} reffer = {count}/>)
             })
@@ -28,7 +28,6 @@ useEffect(() => {
 
     if (display=== true) {console.log(outputArray) ;return (
         <div id = 'storediv'>
-        <h1>{user}</h1>
         <div className="ItemContainer">
            {outputArray}
         </div>

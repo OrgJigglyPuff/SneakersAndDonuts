@@ -1,13 +1,18 @@
 import React from 'react';
-//import './footer.css'
+import './header.css'
+import { Link, Navigate} from "react-router-dom";
+
 function Header({user, id}) {
     //document.getElementById("id").style.border = "thick solid #0000FF";
     return(
      <div id= 'header' >
-         <h1> Welcome {user}</h1>
+         <h1>Welcome {user}</h1>
+         <h2> Sneakers&Donuts </h2>
+         <Link to={"cart"} >
          <div id = 'cart'>
-        <img src = './shoppingCart.png' width="15px" height='15px'></img>
+        <img src = 'https://cdn-icons-png.flaticon.com/512/263/263142.png' alt="shopping_cart" id = 'icon' ></img>
          </div>
+         </Link>
      </div>   
     )
     

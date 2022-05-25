@@ -14,7 +14,7 @@ function SignUp({user, updateUser}) {
         .then(res=> {if (res.status === 201) {updateUser(username)}})
         
     }
-    if (user != '') return (<Navigate to={"expenses"}/>)
+    if (user != '') return (<Navigate to={"store"}/>)
     return(
      <div className = 'signUpDiv'>
          <h1>sign Up</h1>
