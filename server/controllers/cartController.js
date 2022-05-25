@@ -24,14 +24,14 @@ cartController.getItems = async (req, res, next) => {
 
 cartController.addProduct = async (req, res, next) => {
     console.log('entered addProduct middleware')
-   let {_id, type, price, link } = req.body
+   let {_id, type, price, image } = req.body
 console.log(typeof price, price);
    if(typeof price === 'string'){
     price = Number(price.slice(1))
    }
    
     try{
-    res.locals.shoppingCartItems=  await ShoppingCarts.findOneAndUpdate({_id,_id}, {$push: {"items": {product: type, price: price, image: link }}, $inc: {total_price: price, total_quantity: 1}}, {new:true})
+    res.locals.shoppingCartItems=  await ShoppingCarts.findOneAndUpdate({_id,_id}, {$push: {"items": {product: type, price: price, image: image }}, $inc: {total_price: price, total_quantity: 1}}, {new:true})
     console.log(res.locals.shoppingCartItems)
     return next()  
       }
