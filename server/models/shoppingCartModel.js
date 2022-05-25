@@ -14,7 +14,9 @@ mongoose.connect(myURI, {
 const Schema = mongoose.Schema;
 
 const shoppingCartSchema = new Schema({ 
-  items: [String],
+  items: [{product: String,
+  price: Number, 
+  image: String}],
   total_quantity: {type: Number},
   total_price: {type: Number},
 });
