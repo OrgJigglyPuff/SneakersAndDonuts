@@ -23,17 +23,21 @@ export default function Confirmation({id}){
         //   return
         // })
       .then(() => setDisplay(true))
-       
+
       }, [])
 
-      if (display=== true) return(
-<div>
-         
+      if (display === true) return (
+      <div className="container mx-auto">
+        <h1 className="font-medium leading-tight text-3xl mt-0 mb-2 text-violet-500 text-center italic">Thank you for your purchase! Your sneakers and donuts will be on a truck and on their way to you soon!</h1>
+        <video controls autoPlay loop muted className="mx-auto my-8">
+          <source src="http://cs.sixtrillion.com/jigglypuff/donut-jeep.mp4" type="video/mp4"></source>
+        </video>
         <Link to={'/store'} >
-            <h1> Thank you for you're purchase! Click here to go back to the main page</h1>
+        Click here to return to the store.
         </Link>
+        <h1 className="font-medium leading-tight text-xl mt-0 mb-2 text-violet-500 text-center italic">Order History</h1>
         {outputArray}
-</div>
+      </div>
 )
 
 };
