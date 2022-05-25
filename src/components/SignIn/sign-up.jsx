@@ -3,8 +3,10 @@ import './sign-up.css'
 import { Link, Navigate} from "react-router-dom";
 import axios from 'axios'
 
-function SignUp({user, updateUser}) {
+function SignUp({user, updateUser, cartId, updateCartId, userId, updateUserId}) {
 //const [user, updateUser] = useState('')
+let object;
+
     function createAccount(){
         let username = document.getElementById('userSignUp').value;
         let email = document.getElementById('emailSignUp').value;
@@ -13,11 +15,19 @@ function SignUp({user, updateUser}) {
         
         if (username.length && email.length && password.length){
         axios.post('/auth', obj)
-        .then(res=> {if (res.status === 201) {updateUser(username)}})
+        .then(res => {if (res.status === 201) object = res.data })
+        .then(() => {
+            updateCartId(object.cart_id);
+            updateUserId(object.user_id);
+            updateUser(username);
+            return;
+        })
+        
         .catch(err => console.log(err))
             }
         }   
-    if (user != '') return (<Navigate to={"store"}/>)
+    if (user != '') {return (<Navigate to={"store"}/>) }
+     
     return(
      <div className = 'signUpDiv'>
          <h1 id = 'signUp'>Sign Up</h1>
