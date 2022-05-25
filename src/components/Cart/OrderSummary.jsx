@@ -1,5 +1,4 @@
 import React from "react";
-import './cart.css';
 
 function OrderSummary() {
   return (

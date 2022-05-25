@@ -1,5 +1,4 @@
 import React from 'react';
-import './items.css';
 import axios from 'axios';
 
 function Donut({type, price, image, description, id, reffer}) {
@@ -28,9 +27,9 @@ function Donut({type, price, image, description, id, reffer}) {
     //         <h1 id = {priceOf}>{price}</h1>
     //         <button onClick={() => addToCart()}>Add to cart</button>
     //      </div>
-    //  </div>   
+    //  </div>
     <div id= 'item'>
-      
+
         <div class="w-full h-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
           <img src={image}class="w-full h-full object-center object-cover lg:w-full lg:h-full"></img>
         </div>
@@ -42,7 +41,7 @@ function Donut({type, price, image, description, id, reffer}) {
         </div>
     </div>
     )
-    
+
 }
 
 
