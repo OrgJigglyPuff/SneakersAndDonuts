@@ -6,21 +6,24 @@ import axios from 'axios'
 function SignUp({user, updateUser}) {
 //const [user, updateUser] = useState('')
     function createAccount(){
-        let username = document.getElementById("user").value;
-        let email = document.getElementById('email').value;
-        let password = document.getElementById('pass').value;
+        let username = document.getElementById('userSignUp').value;
+        let email = document.getElementById('emailSignUp').value;
+        let password = document.getElementById('passSignUp').value;
         let obj = {"username" : username, "email" : email, "password" : password}
+        
+        if (username.length && email.length && password.length){
         axios.post('/auth', obj)
         .then(res=> {if (res.status === 201) {updateUser(username)}})
-        
-    }
+        .catch(err => console.log(err))
+            }
+        }   
     if (user != '') return (<Navigate to={"store"}/>)
     return(
      <div className = 'signUpDiv'>
          <h1 id = 'signUp'>Sign Up</h1>
-         <input id ='user' placeholder = 'username' type="text" />
-         <input id ='email' placeholder = 'email' type="text" />
-         <input id = "pass" placeholder = 'password' type="password" />
+         <input id ='userSignUp' placeholder = 'username' type="text" />
+         <input id ='emailSignUp' placeholder = 'email' type="text" />
+         <input id = "passSignUp" placeholder = 'password' type="password" />
          {/* <h1 value = {user}></h1> */}
          
          
