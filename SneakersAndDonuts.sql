@@ -50,7 +50,7 @@ CREATE TABLE public.orders(
   "order_id" serial NOT NULL,
   "user_id" bigint NOT NULL,
   "total_cost" money NOT NULL,
-  "total_quantity" bigint NOT NULL,
+  "number_of_items" bigint NOT NULL,
   "date" date,
   CONSTRAINT "orders_pk" PRIMARY KEY ("order_id")
 ) WITH (
