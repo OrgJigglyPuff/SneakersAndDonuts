@@ -42,10 +42,12 @@ signUpController.createUser = async (req, res, next) => {
       }
 
       //  -- Create shoppingCart (mongoDB)
-      await ShoppingCarts.create({items:[],total_quantity:0, total_price:0.00}),
-        (err, shoppingCarts) => {
-          console.log(shoppingCarts);
-        }
+      const shoppingCart = await ShoppingCarts.create({items:[], total_quantity:0, total_price:0.00, user_id: 0})
+        // (err, shoppingCarts) => {
+        //   console.log('shopping cart: ', shoppingCarts);
+        // }
+      let resultShopping = await shoppingCart.save();
+      
 
       // -- Create new user
       // const safePassword = await bcrypt.hash(password, 10);
@@ -54,8 +56,8 @@ signUpController.createUser = async (req, res, next) => {
       res.locals.user_id = response.rows[0]._id;
       res.locals.username = response.rows[0].username;
       // res.locals.shoppingCart_id = response.rows[0].shoppingCartId;
-      console.log(res.locals.user_id); 
-      console.log(res.locals.username); 
+      // console.log(res.locals.user_id); 
+      // console.log(res.locals.username); 
       // console.log(res.locals.shoppingCartId);
       console.log('New user created!')
 
