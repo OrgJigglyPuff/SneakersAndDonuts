@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Donut from '../components/Store/item'
-import './store.css'
 import axios from 'axios'
 
 export default function Store({user, id}) {

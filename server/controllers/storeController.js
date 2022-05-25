@@ -25,6 +25,13 @@ storeController.getProducts = async (req, res, next) => {
       });
     };
   };
+
+  storeController.orderHistory = async (req,res,next) => {
+    console.log('entered orderHistory middleware')
+    const {user_id} = req.body
+    console.log(user_id);
+    // const response = 
+  }
   
   
   module.exports = storeController;

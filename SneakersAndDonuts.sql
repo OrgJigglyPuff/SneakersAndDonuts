@@ -20,7 +20,7 @@ CREATE TABLE public.users (
   "city" varchar,
   "state" varchar,
   "zip" varchar,
-  "shoppingCartId" bigint,
+  "cart_id" varchar,
   CONSTRAINT "users_pk" PRIMARY KEY ("_id")
 ) WITH (
   OIDS=FALSE
@@ -59,17 +59,17 @@ CREATE TABLE public.orders(
 
 ALTER TABLE public.orders ADD CONSTRAINT "orders_fk0" FOREIGN KEY ("user_id") REFERENCES public.users("_id");
 
-INSERT INTO public.donuts VALUES ('Jelly Donut', 3.10, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Jelly-Donut.jpg/1280px-Jelly-Donut.jpg','Jelly Donuts are the best!');
-INSERT INTO public.donuts VALUES ('Glazed Donut', 2.80, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glazed-Donut.jpg/1920px-Glazed-Donut.jpg','Glazed all the way!');
-INSERT INTO public.donuts VALUES ('Boston Cream Donut', 3.20, 'https://upload.wikimedia.org/wikipedia/commons/7/70/DD-Boston-Cream-Donut.jpg','Boston Cream Donuts are the bomb!');
-INSERT INTO public.donuts VALUES ('Cider Donut', 3.00, 'https://upload.wikimedia.org/wikipedia/commons/2/28/Apple_cider_doughnuts.jpg','Donuts to die for!');
-INSERT INTO public.donuts VALUES ('Sour Cream Donut', 2.70, 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Chocolate_sour_cream_doughnut.jpg/1024px-Chocolate_sour_cream_doughnut.jpg','Best sour cream donuts in the country!');
-INSERT INTO public.donuts VALUES ('Orange & Pistachio Donut', 3.70, 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Orange_%26_pistachio_old-fashioned_doughnut.jpg/800px-Orange_%26_pistachio_old-fashioned_doughnut.jpg','Not for the weakhearted');
+INSERT INTO public.donuts VALUES ('Chocolate Sprinkles', 3.10, 'http://cs.sixtrillion.com/jigglypuff/sprinkles-chocolate.jpg','A classic');
+INSERT INTO public.donuts VALUES ('Jiggylpuf Sprinkles', 2.80, 'http://cs.sixtrillion.com/jigglypuff/sprinkles-pink.jpg','Jigglypuff?');
+INSERT INTO public.donuts VALUES ('White Sprinkles', 3.20, 'http://cs.sixtrillion.com/jigglypuff/sprinkles-white.jpg','Try if you dare');
+INSERT INTO public.donuts VALUES ('Squirtle Donut', 3.00, 'http://cs.sixtrillion.com/jigglypuff/blue.jpg','Donuts to die for');
+INSERT INTO public.donuts VALUES ('Charizard Donut', 2.70, 'http://cs.sixtrillion.com/jigglypuff/orange.jpg','Bomb donuts. Enough said');
+INSERT INTO public.donuts VALUES ('Jigglypuff', 3.70, 'http://cs.sixtrillion.com/jigglypuff/pink.jpg','Not for the weakhearted');
 
 
-INSERT INTO public.sneakers VALUES ('Adidas', 'Forum 84 Low', 'M/W', 100.00, 'https://cdn.shopify.com/s/files/1/0094/2252/products/AAGZ8961AdidasForum84LOWCreamWhiteVictoryGoldRed_15495_1080x.jpg?v=1629737504','Coolest shoe on the block');
-INSERT INTO public.sneakers VALUES ('Nike', 'Air Trainer 1', 'M', 120.00, 'https://cdn.shopify.com/s/files/1/0094/2252/products/NKDM0521-100NikeAirTrainer1WhiteBlackMedGrey_16771_1080x.jpg?v=1652216768','Buy if you want to fly');
-INSERT INTO public.sneakers VALUES ('Nike', 'Air More Uptempo 96', 'M/W', 160.00, 'https://cdn.shopify.com/s/files/1/0094/2252/products/NKDM1297-100NikeAirMoreUptempo96SailBlackSailTeamOrange_20777_1080x.jpg?v=1651670893','Buy if you REALLLY want to fly');
-INSERT INTO public.sneakers VALUES ('Vans', 'U Og Epoch Lx', 'W', 75.00,'https://cdn.shopify.com/s/files/1/0094/2252/products/VN0A4U12B4W1VansUOGEpochLXDrizzleTrueWhite_19116_1080x.jpg?v=1649953310', 'For cool kids only' );
-INSERT INTO public.sneakers VALUES ('Common Projects', 'Retro Low', 'M/W', 454.00,'https://cdn.shopify.com/s/files/1/0094/2252/products/CP2295-0536CommonProjectsRetroLowWhiteRed_1530_1080x.jpg?v=1614436636', 'Crazy kicks for crazy cool people' );
-INSERT INTO public.sneakers VALUES ('Adidas', 'Forum 84 High Red Patent', 'M', 120.00,'https://cdn.shopify.com/s/files/1/0094/2252/products/AAGY6973AdidasForum84HiTmpwrdClowhiOwhite_16918_1080x.jpg?v=1649165030', 'Do not buy these if you are lame' );
+INSERT INTO public.sneakers VALUES ('Adidas', 'Yeezy Boost 350', 'M/W', 100.00, 'http://cs.sixtrillion.com/jigglypuff/yeezy-boost-350.jpg','Coolest shoe on the block');
+INSERT INTO public.sneakers VALUES ('Nike', 'Dunk Low SE Candy', 'M', 120.00, 'http://cs.sixtrillion.com/jigglypuff/dunk-low-se-candy.jpg','Buy if you want to fly');
+INSERT INTO public.sneakers VALUES ('Nike', 'Jordan 4 Retro Red Thunder', 'M', 160.00, 'http://cs.sixtrillion.com/jigglypuff/jordan-4-retro-red-thunder.jpg','Buy if you REALLLY want to fly');
+INSERT INTO public.sneakers VALUES ('Nike', 'White Blazer Low Red', 'W', 75.00,'http://cs.sixtrillion.com/jigglypuff/off-white-blazer-low-red.jpg', 'For cool kids only' );
+INSERT INTO public.sneakers VALUES ('Nike', 'Jordan 4 Retro Military BLack', 'M/W', 454.00,'http://cs.sixtrillion.com/jigglypuff/jordan-4-retro-military-black.jpg', 'Crazy kicks for crazy cool people' );
+INSERT INTO public.sneakers VALUES ('Nike', 'Dunk High Pink Prime', 'M', 120.00,'http://cs.sixtrillion.com/jigglypuff/dunk-high-pink-prime.jpg', 'Do not buy these if you are lame' );

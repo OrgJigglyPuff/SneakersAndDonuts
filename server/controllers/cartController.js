@@ -105,6 +105,9 @@ console.log(typeof price, price);
 
     console.log(response)
     const {  user_id, total_quantity, total_price } = response
+    if(total_quantity ===0 || total_price ===0 ){
+     return res.status(400).json({error: "nothing in cart"})
+    }
     let today = new Date()
     today = today.toLocaleDateString("en-US")
     console.log(today)
@@ -114,7 +117,9 @@ console.log(typeof price, price);
       VALUES ($1, $2, $3, $4) RETURNING order_id, total_cost, number_of_items;
       `;
     const response1 = await Store.query(insertQuery,params)
-    res.locals.order = response1[rows]
+    console.log(response1)
+    res.locals.order = response1.rows
+    console.log(res.locals.order)
     return next();
 
     } catch(err) {
