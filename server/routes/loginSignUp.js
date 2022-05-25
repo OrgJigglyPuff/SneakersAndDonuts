@@ -7,8 +7,8 @@ router.post('/', signUpController.createUser, (req,res) => {
     return res.status(201).json({user_id: res.locals.user_id, username: res.locals.username })
 })
 
-router.get('/', signUpController.verifyUser, (req, res) => {
-    return res.status(201).json();
+router.post('/login', signUpController.verifyUser, (req, res) => {
+    return res.status(201).json({user_id: res.locals.user_id, username: res.locals.username });
 })
 
 module.exports = router

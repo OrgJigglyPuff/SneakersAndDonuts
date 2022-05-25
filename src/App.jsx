@@ -6,7 +6,6 @@ import SignInAndSignUpPage from './pages/SignInAndSignUp';
 import Store from './pages/store';
 import Footer from './components/Footer/footer';
 import Header from './components/Header/header'
-import Expenses from './routes/expenses.jsx';
 
 function App() {
 
