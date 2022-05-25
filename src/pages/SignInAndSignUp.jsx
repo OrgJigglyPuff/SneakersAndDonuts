@@ -5,10 +5,13 @@ import SignUpForm from '../components/SignIn/sign-up.jsx'
 
 export default function SignInAndSignUpPage({user, updateUser}) {
     return (
-        <div className="SignInUp">
-           {/* <h3>test 3</h3> */}
+        
+            <div className="SignInUp">
+            {/* <h3>test 3</h3> */}
             <SignInForm />
-            <SignUpForm user = {user} updateUser = {updateUser}/>
+            <h1>Don't have an account?</h1>
+            <SignUpForm user={user} updateUser={updateUser} />
         </div>
+        
     )
 }

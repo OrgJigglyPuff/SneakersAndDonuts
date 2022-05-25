@@ -17,18 +17,18 @@ function SignUp({user, updateUser}) {
     if (user != '') return (<Navigate to={"store"}/>)
     return(
      <div className = 'signUpDiv'>
-         <h1>sign Up</h1>
+         <h1 id = 'signUp'>Sign Up</h1>
          <input id ='user' placeholder = 'username' type="text" />
          <input id ='email' placeholder = 'email' type="text" />
          <input id = "pass" placeholder = 'password' type="password" />
          <h1 value = {user}></h1>
          
-         <nav>
+         
          {/* <Link to="/expenses"> */}
-         <button onClick={() => createAccount()}>Submit</button>
+         <button id = 'signUpButton' onClick={() => createAccount()}>Submit</button>
          {/* </Link> */}
          
-         </nav>
+         
          
      </div>   
     )
