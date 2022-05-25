@@ -1,4 +1,4 @@
-#item{
+#item {
     border: 1px solid rgb(63, 6, 247);
     height: 50vh;
     display: flex;
@@ -8,8 +8,9 @@
 h1{
     font-size: medium;
 }
-img{
+/*img{
     width: 60%;
+<<<<<<< HEAD
     height: 200%
     
    
@@ -19,6 +20,11 @@ button{
     width: 100%
 }
 /* #priceAndBuy{
+=======
+    height: 60%
+}
+*/#priceAndBuy{
+>>>>>>> dan-cart
     display: flex;
     width: 100%;
     justify-content: space-around;
