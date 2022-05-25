@@ -18,7 +18,7 @@ module.exports = {
       directory: path.resolve(__dirname, 'build')
     },
      proxy: [{
-      context: ['/','/auth', '/store'],
+      context: ['/','/auth', '/store', '/store/add'],
       target: 'http://localhost:3000'
       }]
      ,

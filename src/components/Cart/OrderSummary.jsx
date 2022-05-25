@@ -7,7 +7,6 @@ function OrderSummary() {
       <img src="https://via.placeholder.com/100x100" alt="item"></img>
       <span>This is the item name</span>
       <span>$34.99</span>
-      <div className="bg-gray-200">- <span>1</span> +</div>
       <span>X</span>
     </div>
   );

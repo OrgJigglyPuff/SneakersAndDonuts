@@ -1,5 +1,3 @@
-// first push
-
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Route, Routes, HashRouter, } from 'react-router-dom';
@@ -10,6 +8,4 @@ import Expenses from './routes/expenses.jsx';
 import App from './App.jsx';
 
 const root = createRoot(document.getElementById('root'));
-root.render(
-  <App />
-);
+root.render(<App />);

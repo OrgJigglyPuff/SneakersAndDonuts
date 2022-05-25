@@ -10,7 +10,7 @@ function SignUp({user, updateUser}) {
         let email = document.getElementById('email').value;
         let password = document.getElementById('pass').value;
         let obj = {"username" : username, "email" : email, "password" : password}
-        axios.post('/signup', obj)
+        axios.post('/auth', obj)
         .then(res=> {if (res.status === 201) {updateUser(username)}})
         
     }

@@ -1,25 +1,37 @@
-import React from 'react'
-import Item from '../components/Store/item'
+import React, { useState, useEffect } from 'react'
+import Donut from '../components/Store/item'
 import './store.css'
-export default function Store({user}) {
+import axios from 'axios'
 
-    let array = [1,2,3,4,5,6,7,]
-    let outputArray = []
-    for (let i = 0; i < array.length; i++)
-    {
-        outputArray.push(<Item />)
-    }
+export default function Store({user, id}) {
+let array = [];
+let data;
+let count = 0;
+//const outputArray = []
+const [display, setDisplay] = useState('false')
+const [outputArray, setOutput] = useState([])
+useEffect(() => {
+        axios.get('/store')
+        .then(res => data = res.data)
+        //.then(()=> console.log(data))
+        .then(()=> { array = data[0].concat(data[1]); return })
+        // .then(res => console.log(array))
+        .then( () => {
+            array.forEach(el => {
+                console.log(el);
+                count++;
+                outputArray.push(<Donut type={el.type} price={el.price} image={el.image_link} description={el.description} id = {id} reffer = {count}/>)
+            })
+        })
+        .then(() => setDisplay(true))
+    }, [])
 
-
-
-
-    return (
+    if (display=== true) {console.log(outputArray) ;return (
         <div id = 'storediv'>
         <h1>{user}</h1>
         <div className="ItemContainer">
-           {/* <h3>test 3</h3> */}
-            {outputArray}
+           {outputArray}
         </div>
         </div>
-    )
+    ) }
 }
