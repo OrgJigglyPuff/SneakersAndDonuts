@@ -23,4 +23,7 @@ router.post('/delete',cartController.deleteProduct,(req,res)=> {
 router.post('/clear', cartController.clearCart,(req,res) => {
     return res.status(200).json(res.locals.shoppingCartItems)})
 
+router.post('/checkout', cartController.checkOut,(req,res) => {
+    return res.status(200).json('hello!')})
+
 module.exports = router

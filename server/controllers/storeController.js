@@ -8,8 +8,6 @@ storeController.getProducts = async (req, res, next) => {
     const resultArray = []
     const donutQuery = `SELECT * FROM donuts`
     const sneakersQuery = `SELECT * FROM sneakers`
-    
-   
     try{
 
         const {rows} = await Store.query(donutQuery)
