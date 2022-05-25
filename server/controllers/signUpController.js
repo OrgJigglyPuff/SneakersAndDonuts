@@ -95,6 +95,10 @@ signUpController.createUser = async (req, res, next) => {
       } else {
         // -- Check if password is correct
         if(password === response.rows[0].password) {
+          console.log('look below')
+          console.log(response.rows[0])
+          res.locals.user_id = response.rows[0]._id;
+          res.locals.username = response.rows[0].username;
           console.log('Signed in!')
         } else {
           res.status(400).json({

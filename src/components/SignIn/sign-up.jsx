@@ -21,7 +21,7 @@ function SignUp({user, updateUser}) {
          <input id ='user' placeholder = 'username' type="text" />
          <input id ='email' placeholder = 'email' type="text" />
          <input id = "pass" placeholder = 'password' type="password" />
-         <h1 value = {user}></h1>
+         {/* <h1 value = {user}></h1> */}
          
          
          {/* <Link to="/expenses"> */}

@@ -8,7 +8,7 @@ export default function SignInAndSignUpPage({user, updateUser}) {
         
             <div className="SignInUp">
             {/* <h3>test 3</h3> */}
-            <SignInForm />
+            <SignInForm user={user} updateUser={updateUser} />
             <h1>Don't have an account?</h1>
             <SignUpForm user={user} updateUser={updateUser} />
         </div>
