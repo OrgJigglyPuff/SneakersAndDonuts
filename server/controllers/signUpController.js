@@ -41,6 +41,12 @@ signUpController.createUser = async (req, res, next) => {
         });
       }
 
+      //  -- Create shoppingCart (mongoDB)
+      await ShoppingCarts.create({items:[],total_quantity:0, total_price:0.00}),
+        (err, shoppingCarts) => {
+          console.log(shoppingCarts);
+        }
+
       // -- Create new user
       // const safePassword = await bcrypt.hash(password, 10);
       const response = await User.query(insertQuery, params);
@@ -53,7 +59,7 @@ signUpController.createUser = async (req, res, next) => {
       // console.log(res.locals.shoppingCartId);
       console.log('New user created!')
 
-      await ShoppingCarts.create({items:[],total_quantity:0, total_price:0.00})
+      
       return next();
     }
     catch(err){
@@ -71,7 +77,7 @@ signUpController.createUser = async (req, res, next) => {
     const {username, password} = req.body;
 
     try {
-      // -- verify
+      // -- Verify user
       const verifyQuery  = `
       SELECT username, password FROM users WHERE username = '${username}';
       `;
