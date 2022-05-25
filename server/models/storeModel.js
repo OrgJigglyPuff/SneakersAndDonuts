@@ -5,7 +5,6 @@ const pool = new Pool ({
   connectionString: PG_URI,
 })
 
-
 module.exports = {
   query: async (text, params, callback) => {
     try{
