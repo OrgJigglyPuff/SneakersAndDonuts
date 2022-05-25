@@ -19,6 +19,7 @@ const shoppingCartSchema = new Schema({
   image: String}],
   total_quantity: {type: Number},
   total_price: {type: Number},
+  user_id: {type: Number}
 });
 
 const ShoppingCart = mongoose.model('ShoppingCart', shoppingCartSchema);

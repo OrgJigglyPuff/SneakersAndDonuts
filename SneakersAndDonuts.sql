@@ -51,7 +51,6 @@ CREATE TABLE public.orders(
   "user_id" bigint NOT NULL,
   "total_cost" money NOT NULL,
   "total_quantity" bigint NOT NULL,
-  "number_of_items" bigint,
   "date" date,
   CONSTRAINT "orders_pk" PRIMARY KEY ("order_id")
 ) WITH (

@@ -101,11 +101,20 @@ console.log(typeof price, price);
     console.log('entered checkout middleware')
     try{
 
-    response = await ShoppingCarts.findOne({ _id, _id})
+    const response = await ShoppingCarts.findOne({ _id, _id})
 
     console.log(response)
-    const { total_quantity, total_price } = response
-    
+    const {  user_id, total_quantity, total_price } = response
+    let today = new Date.now()
+    today = today.toLocaleDateString("en-US")
+    console.log(today)
+    const params = [user_id, total_quantity, total_price , today]
+    const insertQuery  = `
+      INSERT INTO orders (user_id, total_quantity, total_price, date)
+      VALUES ($1, $2, $3, $4) RETURNING id, totalCost, totalQuantity;
+      `;
+    const response1 = await Store.query(insertQuery,params)
+    console.log(response1)
     return next();
 
     } catch(err) {
