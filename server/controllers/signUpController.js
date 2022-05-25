@@ -1,13 +1,12 @@
 const User = require('../models/storeModel.js')
 const ShoppingCarts = require('../models/shoppingCartModel.js')
 const signUpController = {};
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 signUpController.createUser = async (req, res, next) => {
     console.log('-----> entered createUser middleware')
     console.log('reqbody', req.body);
     const {username, email, password} = req.body;
-    const params = [username, email, password];
   
     try {
       const emailQuery = `
@@ -18,8 +17,8 @@ signUpController.createUser = async (req, res, next) => {
       `;
       
       const insertQuery  = `
-      INSERT INTO users (username, email, password)
-      VALUES ($1, $2, $3) RETURNING _id, username;
+      INSERT INTO users (username, email, password, cart_id)
+      VALUES ($1, $2, $3, $4) RETURNING _id, username, cart_id;
       `;
       
       // -- Check if email already exists
@@ -43,25 +42,23 @@ signUpController.createUser = async (req, res, next) => {
 
       //  -- Create shoppingCart (mongoDB)
       const shoppingCart = await ShoppingCarts.create({items:[], total_quantity:0, total_price:0.00, user_id: 0})
-        // (err, shoppingCarts) => {
-        //   console.log('shopping cart: ', shoppingCarts);
-        // }
-      let resultShopping = await shoppingCart.save();
+      console.log('shopping cart: ', shoppingCart);
       
+      const {_id} = shoppingCart;
+      console.log('shopping cart id: ', _id);
 
       // -- Create new user
-      // const safePassword = await bcrypt.hash(password, 10);
+      const safePassword = await bcrypt.hash(password, 10);
+      const params = [username, email, safePassword, _id];
       const response = await User.query(insertQuery, params);
       console.log(response)
       res.locals.user_id = response.rows[0]._id;
       res.locals.username = response.rows[0].username;
-      // res.locals.shoppingCart_id = response.rows[0].shoppingCartId;
-      // console.log(res.locals.user_id); 
-      // console.log(res.locals.username); 
-      // console.log(res.locals.shoppingCartId);
+      res.locals.cart_id = response.rows[0].cart_id;
       console.log('New user created!')
 
-      
+      const result = await ShoppingCarts.findOneAndUpdate({_id: _id}, {user_id: res.locals.user_id}, {new: true})
+      console.log('result: ', result);
       return next();
     }
     catch(err){
@@ -81,11 +78,11 @@ signUpController.createUser = async (req, res, next) => {
     try {
       // -- Verify user
       const verifyQuery  = `
-      SELECT username, password FROM users WHERE username = '${username}';
+      SELECT username, password, cart_id FROM users WHERE username = '${username}';
       `;
       
       const response = await User.query(verifyQuery);
-      console.log(response)
+      console.log('----> response: ', response)
       // -- If username doesn't exist
       const user = response.rows;
       if(user.length === 0) {
@@ -94,11 +91,13 @@ signUpController.createUser = async (req, res, next) => {
         })
       } else {
         // -- Check if password is correct
-        if(password === response.rows[0].password) {
-          console.log('look below')
+        const validPassword = await bcrypt.compare(password, response.rows[0].password);
+        console.log('bcrypt password: ', validPassword);
+        if(validPassword) {
           console.log(response.rows[0])
           res.locals.user_id = response.rows[0]._id;
           res.locals.username = response.rows[0].username;
+          res.locals.cart_id = response.rows[0].cart_id;
           console.log('Signed in!')
         } else {
           res.status(400).json({

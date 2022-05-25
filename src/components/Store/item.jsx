@@ -6,11 +6,13 @@ function Donut({type, price, image, description, id, reffer}) {
     let refference = reffer + ""
     let priceOf = price;
     let img = image;
+    let cartId = id;
     //console.log(refference)
     function addToCart() {
+        console.log(id)
         let typeOf = document.getElementById(`${refference}`).innerText
         let price = document.getElementById(`${priceOf}`).innerText
-        let obj ={'_id': id, 'type': typeOf, 'price' : price, 'image' : img }
+        let obj ={'_id': cartId.slice(1,cartId.length -1), 'type': typeOf, 'price' : price, 'image' : img }
         //  console.log(obj)
         axios.post('./store/add', obj)
         .then(res => console.log(res))
