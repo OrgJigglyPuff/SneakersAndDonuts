@@ -1,0 +1,24 @@
+.ItemContainer{
+  overflow: scroll;
+    border: 1px solid rgb(235, 33, 33);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    /* grid-auto-rows: minmax(100px, auto); */
+    width: 90vw;
+    height: 80vh;
+    /* margin-left: 5vw;
+    padding-top: 20vh; */
+    
+    background-color: rgb(255, 255, 255);
+
+}
+#storediv{
+    background-color: aquamarine;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    width: 100vw;
+    height: 90vh;
+    margin-top: 0;
+}

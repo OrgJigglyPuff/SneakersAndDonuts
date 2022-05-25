@@ -1,19 +1,17 @@
 // first push
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { render } from 'react-dom';
-
-import { BrowserRouter } from 'react-router-dom';
-//import { createStore } from 'redux';
+import { Route, Routes, HashRouter, } from 'react-router-dom';
+import SignInAndSignUpPage from './pages/SignInAndSignUp';
+import Store from './pages/store';
+import Footer from './components/Footer/footer'
+import Expenses from './routes/expenses.jsx';
 import App from './App.jsx';
 
-//const store = createStore('../reducers/index')
-
-render(
-<BrowserRouter>
-<h1>test 2</h1>
-  <App/>
-
-</BrowserRouter>,
-document.querySelector('#root')
+const rootElement = document.getElementById("root");
+render( 
+<App />
+,
+rootElement
 );

@@ -1,0 +1,9 @@
+.SignInUp{
+display: flex;
+justify-content: space-around;
+border: 1px solid black;
+padding-top: 10vh;
+padding-bottom: 10vh;
+border-radius: 10px;
+
+}
