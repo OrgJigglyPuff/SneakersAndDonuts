@@ -12,8 +12,7 @@ function SignIn({user, updateUser, cartId, updateCartId, userId, updateUserId}) 
         //console.log(obj)
         if (username.length && password.length){
         axios.post('/auth/login', obj)
-        .then(res => console.log(res))
-        .then(res => {if (res.status === 201) object = res.data })
+        .then(res => { console.log(res); if (res.status === 201) object = res.data })
         .then(() => {
             updateCartId(object.cart_id);
             updateUserId(object.user_id);
