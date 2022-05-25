@@ -20,7 +20,7 @@ CREATE TABLE public.users (
   "city" varchar,
   "state" varchar,
   "zip" varchar,
-  "shoppingCartId" bigint,
+  "cart_id" varchar,
   CONSTRAINT "users_pk" PRIMARY KEY ("_id")
 ) WITH (
   OIDS=FALSE
