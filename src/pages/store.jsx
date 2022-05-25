@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Donut from '../components/Store/item'
+//import './store.css'
 import axios from 'axios'
 
 export default function Store({user, id}) {
 let array = [];
 let data;
 let count = 0;
-//const outputArray = []
 const [display, setDisplay] = useState('false')
 const [outputArray, setOutput] = useState([])
 useEffect(() => {
