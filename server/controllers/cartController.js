@@ -1,5 +1,5 @@
 const Store = require('../models/storeModel.js')
-const ShoppingCarts = require('../models/shoppingCartModel.js')
+const ShoppingCarts = require('../models/shoppingCartModel.js');
 const cartController = {};
 
 
@@ -20,19 +20,19 @@ cartController.getItems = async (req, res, next) => {
     });
   };
 };
+
 cartController.addProduct = async (req, res, next) => {
     console.log('entered addProduct middleware')
-   let {_id, type, price } = req.body
+   let {_id, type, price, image } = req.body
 console.log(typeof price, price);
    if(typeof price === 'string'){
     price = Number(price.slice(1))
    }
    
     try{
-    res.locals.shoppingCartItems=  await ShoppingCarts.findOneAndUpdate({_id,_id}, {$push: {"items": type}, $inc: {total_price: price, total_quantity: 1}}, {new:true})
+    res.locals.shoppingCartItems=  await ShoppingCarts.findOneAndUpdate({_id,_id}, {$push: {"items": {product: type, price: price, image: image }}, $inc: {total_price: price, total_quantity: 1}}, {new:true})
     console.log(res.locals.shoppingCartItems)
-    return next()
-        
+    return next()  
       }
     catch(err){
       console.log(err)
@@ -94,7 +94,35 @@ console.log(typeof price, price);
         message: {err: `Error occurred in cartController.clearCart ${err.error}`}
       });
     };
-    
+  }
+
+  cartController.checkOut = async (req,res,next) => {
+    const {_id} = req.body
+    console.log('entered checkout middleware')
+    try{
+
+    const response = await ShoppingCarts.findOne({ _id, _id})
+
+    console.log(response)
+    const {  user_id, total_quantity, total_price } = response
+    let today = new Date.now()
+    today = today.toLocaleDateString("en-US")
+    console.log(today)
+    const params = [user_id, total_quantity, total_price , today]
+    const insertQuery  = `
+      INSERT INTO orders (user_id, total_quantity, total_price, date)
+      VALUES ($1, $2, $3, $4) RETURNING id, totalCost, totalQuantity;
+      `;
+    const response1 = await Store.query(insertQuery,params)
+    console.log(response1)
+    return next();
+
+    } catch(err) {
+      return next({
+        log: `cartController.checkOut: ERROR: ${err}`,
+        message: {err: `Error occurred in cartController.checkOut ${err.error}`}
+      });
+    }
   }
   
   module.exports = cartController;
