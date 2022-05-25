@@ -7,6 +7,8 @@ import Store from './pages/store';
 import Cart from './pages/Cart';
 import Footer from './components/Footer/footer';
 import Header from './components/Header/header'
+import Checkout from './pages/Checkout';
+import Confirmation from './pages/Confirmation';
 
 function App() {
 
@@ -32,7 +34,9 @@ else {
         <Routes>
           <Route  path='/' element={<SignInAndSignUpPage user = {user} updateUser = {updateUser} />}/>
           <Route path='store' element={<Store user = {user} id = {id}/>} />
-          <Route path='cart' element={<Cart />} />
+          <Route path='cart' element={<Cart user = {user} id ={id}/>} />
+          <Route path='cart/checkout' element={<Checkout id ={id}/>} />
+          <Route path='/cart/checkout/confirmation' element={<Confirmation />} />
         </Routes>
         {footer}
         </HashRouter>
