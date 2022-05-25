@@ -105,16 +105,21 @@ console.log(typeof price, price);
 
     console.log(response)
     const {  user_id, total_quantity, total_price } = response
-    let today = new Date.now()
+    if(total_quantity ===0 || total_price ===0 ){
+     return res.status(400).json({error: "nothing in cart"})
+    }
+    let today = new Date()
     today = today.toLocaleDateString("en-US")
     console.log(today)
     const params = [user_id, total_quantity, total_price , today]
     const insertQuery  = `
-      INSERT INTO orders (user_id, total_quantity, total_price, date)
-      VALUES ($1, $2, $3, $4) RETURNING id, totalCost, totalQuantity;
+      INSERT INTO orders (user_id, number_of_items, total_cost, date)
+      VALUES ($1, $2, $3, $4) RETURNING order_id, total_cost, number_of_items;
       `;
     const response1 = await Store.query(insertQuery,params)
     console.log(response1)
+    res.locals.order = response1.rows
+    console.log(res.locals.order)
     return next();
 
     } catch(err) {
@@ -124,5 +129,9 @@ console.log(typeof price, price);
       });
     }
   }
+
+  // cartController.updateAddress = async (req,res,next) => {
+  //   const {}
+  // }
   
   module.exports = cartController;
