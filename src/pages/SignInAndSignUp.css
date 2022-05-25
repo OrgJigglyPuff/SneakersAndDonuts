@@ -1,9 +1,11 @@
 .SignInUp{
 display: flex;
 justify-content: space-around;
-border: 1px solid black;
-padding-top: 10vh;
+align-items: center;
+padding-top: 20vh;
 padding-bottom: 10vh;
 border-radius: 10px;
-
+background-image: url('https://media.wired.com/photos/6074aa620dfeac35a0cca839/master/pass/Science_donuts_465529983.jpg');
+height: 100vh;
+width: 100vw;
 }
