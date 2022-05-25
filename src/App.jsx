@@ -40,7 +40,7 @@ else {
           <Route path='cart/checkout' element={<Checkout id ={cartId}/>} />
           <Route path='/cart/checkout/confirmation' element={<Confirmation />} />
         </Routes>
-        {footer}
+        {/* {footer} */}
         </HashRouter>
     );
   }

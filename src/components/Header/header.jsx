@@ -6,7 +6,7 @@ function Header({user, id}) {
     <header>
       <nav className="flex justify-around items-center py-6">
         <h1>Welcome {user}!</h1>
-        <img src="http://cs.sixtrillion.com/jigglypuff/sneakers+donuts.png" alt="Sneakers &amp; Donuts logo" className="w-18"></img>
+        <img src="http://cs.sixtrillion.com/jigglypuff/sneakers+donuts.png" alt="Sneakers &amp; Donuts logo" className="w-24"></img>
         <Link to={"cart"} >
         <div id="cart">
           <img src="http://cs.sixtrillion.com/jigglypuff/cart.svg" alt="shopping_cart" className="w-8"></img>

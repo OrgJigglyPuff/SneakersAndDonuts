@@ -7,7 +7,7 @@ function OrderSummary({image, price, product}) {
       <img src={image} alt="item"></img>
       <span>{product}</span>
       <span>${price}</span>
-      <span>X</span>
+      <span className="font-bold">X</span>
     </div>
   );
 }
