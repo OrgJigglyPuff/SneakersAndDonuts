@@ -26,10 +26,10 @@ if (user){
 else {
   header = undefined;
   footer=undefined;
-  
+
 }
 
-//to add to cart, send price, shopping cart id, and item
+  //to add to cart, send price, shopping cart id, and item
     return (
         <HashRouter>
           {header}

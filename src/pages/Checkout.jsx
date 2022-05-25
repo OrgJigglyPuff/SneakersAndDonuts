@@ -8,12 +8,12 @@ export default function Checkout({id}){
     const [display, setDisplay] = useState(false)
 
     function done() {
-        axios.post('./store/checkout', { _id: id})
+        axios.post('./store/checkout', { _id: id.slice(1,id.length-1)})
         .then(res => {if (res.status == 200) {setDisplay(true); return}
         })
     }
     if (display) return (<Navigate to={"confirmation"}/>)
-    
+
 return(
 <div>
          <input id ='FirstName' placeholder = 'Firstname' type="text" />
