@@ -12,8 +12,12 @@ function SignIn({user, updateUser}) {
         //console.log(obj)
         axios.post('/auth/login', obj)
         .then(res=> {if (res.status === 201) {updateUser(username)}})
+        .catch(()=> {
+            document.getElementById('error').innerText = "incorrect loggin"
+        })
          //.then(res=> console.log(res))
         if (user != '') return (<Navigate to={"store"}/>)
+        
     }
 
     return(
@@ -21,7 +25,9 @@ function SignIn({user, updateUser}) {
          <h1 id = 'signIn'>Sign In</h1>
          <input id ='user' placeholder = 'username' type="text" />
          <input id = "pass" placeholder = 'password' type="password" />
+         <h1 id = 'error'></h1>
          <button id = 'signInButton' onClick={() => signIn()}>Submit</button>
+         
      </div>   
     )
 }
