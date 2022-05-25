@@ -10,32 +10,32 @@ import Header from './components/Header/header'
 
 function App() {
 
-let header;
-let footer;
-const [user, updateUser] = useState('')
-const [cart, updateCart] = useState({total : 0, items: []})
-const id = '628cf0e6f91da7d772f6d858'
+  let header;
+  let footer;
+  const [user, updateUser] = useState('')
+  const [cart, updateCart] = useState({total : 0, items: []})
+  const id = '628cf0e6f91da7d772f6d858'
 
-if (user){
-  header = <Header user = {user}/>;
-  footer = <Footer />
-}
-else {
-  header = undefined;
-  footer=undefined;
-}
+  if (user){
+    header = <Header user = {user}/>;
+    footer = <Footer />
+  }
+  else {
+    header = undefined;
+    footer = undefined;
+  }
 
-//to add to cart, send price, shopping cart id, and item
+  //to add to cart, send price, shopping cart id, and item
     return (
-        <HashRouter>
-          {header}
-        <Routes>
-          <Route  path='/' element={<SignInAndSignUpPage user = {user} updateUser = {updateUser} />}/>
-          <Route path='store' element={<Store user = {user} id = {id}/>} />
-          <Route path='cart' element={<Cart />} />
-        </Routes>
-        {footer}
-        </HashRouter>
+      <HashRouter>
+        {header}
+      <Routes>
+        <Route  path='/' element={<SignInAndSignUpPage user = {user} updateUser = {updateUser} />}/>
+        <Route path='store' element={<Store user = {user} id = {id}/>} />
+        <Route path='cart' element={<Cart />} />
+      </Routes>
+      {footer}
+      </HashRouter>
     );
   }
 

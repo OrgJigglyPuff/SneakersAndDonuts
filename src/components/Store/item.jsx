@@ -17,15 +17,15 @@ function Donut({type, price, image, description, id, reffer}) {
 
     }
     return (
-    <div id="item">
+    <div className="flex flex-col items-center border-solid border border-gray-300 m-4" id="item">
         <div>
-          <img src={image}></img>
+          <img className="w-64" src={image}></img>
         </div>
-        <div id="content">
-        <h3 id={refference}>{type}</h3>
-        <h3>{description}</h3>
-        <p id={priceOf}>{price}</p>
-        <button id="button" onClick={() => addToCart()}>Add to cart</button>
+        <div className="w-full flex flex-col items-center font-sans">
+          <h3 className="text-2xl font-semibold" id={refference}>{type}</h3>
+          <h3 className="italic">{description}</h3>
+          <p className="mt-8 mb-2 text-xl font-bold" id={priceOf}>{price}</p>
+          <button className="px-4 py-2 font-semibold text-sm bg-violet-500 text-white rounded-full shadow-sm mb-8" id="button" onClick={() => addToCart()}>Add to cart</button>
         </div>
     </div>
     )

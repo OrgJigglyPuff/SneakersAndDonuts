@@ -13,7 +13,7 @@ useEffect(() => {
         axios.get('/store')
         .then(res => data = res.data)
         //.then(()=> console.log(data))
-        .then(()=> { array = data[0].concat(data[1]); return })
+        .then(()=> { array = data[1].concat(data[0]); return })
         // .then(res => console.log(array))
         .then( () => {
             array.forEach(el => {
@@ -27,7 +27,7 @@ useEffect(() => {
 
     if (display=== true) {console.log(outputArray) ;return (
         <div id = 'storediv'>
-        <main>
+        <main className="container mx-auto grid grid-rows-3 grid-cols-3">
            {outputArray}
         </main>
         </div>
